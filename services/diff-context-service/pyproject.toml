@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "diff-context-service"
+version = "0.1.0"
+description = "Diff context enrichment service for PR Intelligence Platform"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pr-intelligence-common",
+    "pr-intelligence-github-client",
+    "aiokafka>=0.10.0",
+    "redis>=5.0,<6.0",
+    "structlog>=24.0",
+    "pydantic-settings>=2.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

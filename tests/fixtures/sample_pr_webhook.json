@@ -1,0 +1,33 @@
+{
+    "action": "opened",
+    "number": 42,
+    "pull_request": {
+        "number": 42,
+        "title": "Add user authentication endpoint",
+        "body": "This PR adds JWT-based authentication with login and token refresh endpoints.",
+        "user": {
+            "login": "test-developer"
+        },
+        "head": {
+            "sha": "abc123def456789012345678901234567890abcd",
+            "ref": "feature/user-auth"
+        },
+        "base": {
+            "ref": "main"
+        },
+        "html_url": "https://github.com/test-org/test-repo/pull/42",
+        "diff_url": "https://github.com/test-org/test-repo/pull/42.diff"
+    },
+    "repository": {
+        "id": 123456789,
+        "name": "test-repo",
+        "full_name": "test-org/test-repo",
+        "owner": {
+            "login": "test-org"
+        },
+        "default_branch": "main"
+    },
+    "installation": {
+        "id": 987654
+    }
+}

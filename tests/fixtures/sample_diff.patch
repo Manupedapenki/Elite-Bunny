@@ -1,0 +1,40 @@
+diff --git a/auth/login.py b/auth/login.py
+new file mode 100644
+index 0000000..1234567
+--- /dev/null
++++ b/auth/login.py
+@@ -0,0 +1,35 @@
++import sqlite3
++from flask import Flask, request, jsonify
++import hashlib
++
++app = Flask(__name__)
++
++SECRET_KEY = "my-super-secret-key-12345"
++
++@app.route('/login', methods=['POST'])
++def login():
++    username = request.form.get('username')
++    password = request.form.get('password')
++    
++    # SQL injection vulnerability - using string formatting
++    conn = sqlite3.connect('users.db')
++    cursor = conn.cursor()
++    query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
++    cursor.execute(query)
++    user = cursor.fetchone()
++    
++    if user:
++        # Using weak hash
++        token = hashlib.md5(username.encode()).hexdigest()
++        return jsonify({"token": token})
++    
++    return jsonify({"error": "Invalid credentials"}), 401
++
++@app.route('/admin', methods=['GET'])
++def admin():
++    token = request.headers.get('Authorization')
++    # No proper token validation
++    if token:
++        return jsonify({"data": "sensitive admin data"})
++    return jsonify({"error": "Unauthorized"}), 403

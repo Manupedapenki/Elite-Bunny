@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "pr-intelligence-common"
+version = "0.1.0"
+description = "Shared utilities for PR Intelligence Platform"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.0,<3.0",
+    "pydantic-settings>=2.0,<3.0",
+    "aiokafka>=0.10.0,<1.0",
+    "structlog>=24.0",
+    "sqlalchemy[asyncio]>=2.0,<3.0",
+    "asyncpg>=0.29.0,<1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

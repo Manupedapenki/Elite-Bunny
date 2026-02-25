@@ -1,0 +1,42 @@
+{
+    "issues": [
+        {
+            "severity": "critical",
+            "file_path": "auth/login.py",
+            "line_number": 17,
+            "end_line_number": 17,
+            "title": "SQL injection in user lookup query",
+            "description": "The login query uses f-string formatting to directly interpolate user input into a SQL query. An attacker can bypass authentication by entering a username like `' OR '1'='1` which would match all users.",
+            "confidence": 0.95,
+            "category": "sqli",
+            "cwe_id": "CWE-89",
+            "suggestion": "Use parameterized queries: cursor.execute('SELECT * FROM users WHERE username=? AND password=?', (username, password))"
+        },
+        {
+            "severity": "high",
+            "file_path": "auth/login.py",
+            "line_number": 7,
+            "end_line_number": 7,
+            "title": "Hardcoded secret key in source code",
+            "description": "The SECRET_KEY is hardcoded as a string literal in the source file. This secret will be committed to version control and visible to anyone with repository access. Secrets should be loaded from environment variables or a secrets manager.",
+            "confidence": 0.98,
+            "category": "secrets",
+            "cwe_id": "CWE-798",
+            "suggestion": "Load from environment: SECRET_KEY = os.environ.get('SECRET_KEY')"
+        },
+        {
+            "severity": "medium",
+            "file_path": "auth/login.py",
+            "line_number": 23,
+            "end_line_number": 23,
+            "title": "Using MD5 for token generation",
+            "description": "MD5 is a cryptographically broken hash function. Using it for token generation makes tokens predictable. An attacker who knows a username can compute the same token.",
+            "confidence": 0.90,
+            "category": "crypto",
+            "cwe_id": "CWE-328",
+            "suggestion": "Use a proper token library like PyJWT with a strong signing algorithm, or use secrets.token_urlsafe()"
+        }
+    ],
+    "overall_risk_score": 0.85,
+    "risk_explanation": "This PR contains a critical SQL injection vulnerability and a hardcoded secret, both of which pose immediate security risks."
+}

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "notification-service"
+version = "0.1.0"
+description = "Notification service — posts review comments to GitHub PRs"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pr-intelligence-common",
+    "pr-intelligence-github-client",
+    "aiokafka>=0.10.0",
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.29.0",
+    "structlog>=24.0",
+    "pydantic-settings>=2.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
