@@ -9,7 +9,8 @@ class Settings(BaseSettings):
 
     service_name: str = "llm-service"
     anthropic_api_key: str = ""
-    default_model: str = "claude-sonnet-4-6"
+    gemini_api_key: str = ""
+    default_model: str = "gemini-2.0-flash"
     log_level: str = "INFO"
 
     # Rate limiting

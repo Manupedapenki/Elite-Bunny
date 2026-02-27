@@ -7,7 +7,7 @@ import structlog
 
 from common.models.pr_event import PREventPayload
 
-from ..main import get_kafka_producer
+from ..dependencies import get_kafka_producer
 
 logger = structlog.get_logger()
 

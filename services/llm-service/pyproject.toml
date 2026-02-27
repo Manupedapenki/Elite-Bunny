@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.backends._legacy:_Backend"
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "llm-service"
@@ -12,10 +12,11 @@ dependencies = [
     "uvicorn[standard]>=0.30.0",
     "pr-intelligence-common",
     "anthropic>=0.39.0",
+    "google-generativeai>=0.4.0",
     "pyyaml>=6.0",
     "structlog>=24.0",
     "pydantic-settings>=2.0",
 ]
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]

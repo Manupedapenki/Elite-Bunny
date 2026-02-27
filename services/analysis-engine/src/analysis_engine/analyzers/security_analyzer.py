@@ -28,7 +28,7 @@ class SecurityAnalyzer:
         Returns:
             Dict with keys: content, model, tokens_used.
         """
-        async with httpx.AsyncClient(timeout=120.0) as client:
+        async with httpx.AsyncClient(timeout=300.0) as client:
             response = await client.post(
                 f"{self._llm_service_url}/analyze",
                 json={

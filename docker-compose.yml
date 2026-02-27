@@ -14,7 +14,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U pi_user -d pr_intelligence"]
+      test: [ "CMD-SHELL", "pg_isready -U pi_user -d pr_intelligence" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -24,7 +24,7 @@ services:
     ports:
       - "6379:6379"
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -50,7 +50,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     healthcheck:
-      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
+      test: [ "CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092" ]
       interval: 10s
       timeout: 10s
       retries: 10
@@ -135,7 +135,9 @@ services:
       - "8004:8004"
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-      - DEFAULT_MODEL=${DEFAULT_MODEL:-claude-sonnet-4-6}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - LLM_PROVIDER=${LLM_PROVIDER}
+      - DEFAULT_MODEL=${DEFAULT_MODEL:-gemini-1.5-flash}
       - LOG_LEVEL=DEBUG
     volumes:
       - ./services/llm-service/src:/app/src

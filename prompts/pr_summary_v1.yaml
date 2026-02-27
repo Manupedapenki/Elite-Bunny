@@ -15,14 +15,14 @@ system: |
   4. Testing concerns (what should be tested)
 
   Respond ONLY with valid JSON:
-  {
+  {{
     "summary": "One paragraph describing what this PR accomplishes",
     "key_changes": ["change 1", "change 2"],
     "architectural_impact": "none|low|medium|high",
     "architectural_notes": "Brief note if impact is medium or high, null otherwise",
     "testing_concerns": ["concern 1", "concern 2"],
     "labels_suggested": ["bug-fix", "feature", "refactor", "security", "docs", "deps"]
-  }
+  }}
 
 user: |
   ## Pull Request
